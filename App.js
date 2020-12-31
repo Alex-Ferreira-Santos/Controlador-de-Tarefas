@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Database from './src/database/Database'
+import Tarefas from './src/model/Tarefas'
 
 export default class App extends Component {
 
@@ -11,15 +12,16 @@ export default class App extends Component {
     }
   }
 
-  OpenConnection(){
+  insertTarefa(){
+    const tarefa = new Tarefas(1,'teste de descricao','alta','19/10/2000')
     const db = new Database()
-    db.initDB()
+    db.addProduct(tarefa)
   }
 
-  
-
-
-
+  selectTarefa(){
+    const db = new Database
+    db.Select()
+  }
 
 
   render() {
@@ -27,8 +29,8 @@ export default class App extends Component {
       <View style={styles.container}>
         
         <Text>Open up App.js to start working on your app!</Text>
-        <Button title="Abrir conexão" onPress={this.OpenConnection}/>
-        <Button title="Listar tarefa" onPress={this.closeConexao}/>
+        <Button title="Adicionar Tarefa" onPress={this.insertTarefa}/>
+        <Button title="Select Tarefa" onPress={this.selectTarefa}/>
         
       </View>
     );
