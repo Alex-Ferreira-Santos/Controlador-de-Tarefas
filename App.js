@@ -4,16 +4,32 @@ import Database from './src/database/Database'
 
 export default class App extends Component {
 
-  conexao(){
-    const database = new Database()
-    database.initDB()
+  constructor(props){
+    super(props);
+    this.state = {
+      teste: 'teste'
+    }
   }
+
+  OpenConnection(){
+    const db = new Database()
+    db.initDB()
+  }
+
+  
+
+
+
+
 
   render() {
     return (
       <View style={styles.container}>
+        
         <Text>Open up App.js to start working on your app!</Text>
-        <Button title="testar conexão" onPress={this.conexao}/>
+        <Button title="Abrir conexão" onPress={this.OpenConnection}/>
+        <Button title="Listar tarefa" onPress={this.closeConexao}/>
+        
       </View>
     );
   }

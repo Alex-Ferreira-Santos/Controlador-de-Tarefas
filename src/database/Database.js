@@ -14,27 +14,74 @@ export default class Database{
     initDB(){
         let db
         return new Promise(resolve =>{
-            console.log("Checando a integridade do plugin...")
-            
-                console.log("Abrindo Banco de Dados...")
-                SQLite.openDatabase(database_name,database_version,database_display_name,database_size).then(DB => {
+            SQLite.openDatabase(database_name,database_version,database_display_name,database_size).then(DB => {
+                db = DB
+                console.log("banco de dados aberto")
+                db.executeSql("SELECT 1 FROM Tarefas LIMIT 1").then(()=>{
+                    console.log("o banco de dados está pronto ... executando consulta SQL")
+                }).catch((error)=>{
                     db = DB
-                    console.log("banco de dados aberto")
-                    db.executeSql("SELECT 1 FROM Tarefas LIMIT 1").then(()=>{
-                        console.log("o banco de dados está pronto ... executando consulta SQL")
-                    }).catch((error)=>{
-                        db = DB
-                        console.log(`Erro recebido ${error}`)
-                        console.log("O banco de dados não está pronto ... Criando dados")
-                        db.transaction((tx)=>{
-                            tx.executeSql("CREATE TABLE IF NOT EXISTS Tarefas(id, descricao, dataDeTermino, prioridade)")
-                        }).then(()=>{
-                            console.log("Tabela criada com sucesso")
-                        }).catch(error => console.log(error))
-                    })
-                    resolve(db)
-                }).catch(error => console.log("Erro causado na linha 20, causa: "+error))
+                    console.log(`Erro recebido ${error}`)
+                    console.log("O banco de dados não está pronto ... Criando dados")
+                    db.transaction((tx)=>{
+                        tx.executeSql("CREATE TABLE IF NOT EXISTS Tarefas(id, descricao, dataDeTermino, prioridade)")
+                    }).then(()=>{
+                        console.log("Tabela criada com sucesso")
+                    }).catch(error => console.log(error))
+                })
+                resolve(db)
+            }).catch(error => console.log("Erro causado na linha 20, causa: "+error))
+        })
+    }
 
+    closeDatabase(db){
+        if(db){
+            console.log("Fechando Banco de dados")
+            db.close().then( status => {
+                console.log("Banco de dados desconectado")
+            }).catch(error => this.errorCB(error))
+        }else{
+            console.log("A conexão com o banco não está aberta")
+        }
+    }
+
+    Select(){
+        return new Promise((resolve) =>{
+            const products = []
+            this.initDB().then( db => {
+                db.transaction( tx => {
+                    tx.executeSql('SELECT * FROM Tarefas',[]).then(([tx,result]) => {
+                        console.log('Consulta completa')
+                        var len = result.row.length
+                        for(let i = 0; i < len; i++){
+                            let row = result.row.item(i)
+                            console.log(`Tarefa ID: ${row.id}, Tarefa descricao: ${row.descricao}, Tarefa dataDeTermino: ${dataDeTermino}, Tarefa prioridade: ${row.prioridade}`)
+                            const {id,descricao,dataDeTermino,prioridade} = row
+                            products.push({id,descricao,dataDeTermino, prioridade})
+                        }
+                        console.log(products)
+                        resolve(products)
+                    })
+                }).then(result => this.closeDatabase(db)).catch(err => console.log(err))
+            }).catch( err => console.log(err))
+        }) 
+    }
+
+    SelectById(){
+
+    }
+
+    addProduct(tarefa){
+        return new Promise(resolve => {
+            this.initDB().then(db =>{
+                db.transaction(tx => {
+                    tx.executeSql('INSERT INTO Tarefas VALUES(?, ?, ?, ?)',[tarefa.id, tarefa.descricao, tarefa.dataDeTermino, tarefa.prioridade]).then(([tx,results]) => {
+                        resolve(results)
+                    })
+                }).then( results => {
+                    this.closeDatabase(db)
+                }).catch( err => console.log(err))
+            }).catch( err => console.log(err))
         })
     }
 }
