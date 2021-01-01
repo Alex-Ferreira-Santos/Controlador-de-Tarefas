@@ -34,6 +34,11 @@ export default class App extends Component {
     db.updateTarefa(1, tarefa)
   }
 
+  deleteTarefa(){
+    const db = new Database
+    db.deleteTarefa(1)
+  }
+
 
   render() {
     return (
@@ -44,6 +49,7 @@ export default class App extends Component {
         <Button title="Select Tarefa" onPress={this.selectTarefa}/>
         <Button title="Select by id tarefa" onPress={this.selectByIdTarefa}/>
         <Button title="Update Tarefa" onPress={this.updateTarefa}/>
+        <Button title="Delete Tarefa" onPress={this.deleteTarefa}/>
       </View>
     );
   }

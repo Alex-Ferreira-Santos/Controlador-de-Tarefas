@@ -115,4 +115,17 @@ export default class Database{
             }).catch( err => console.log(err))
         })
     }
+
+    deleteTarefa(id){
+        return new Promise((resolve, reject) => {
+            this.initDB().then( db => {
+                db.transaction( tx => {
+                    tx.executeSql(`DELETE FROM Tarefas WHERE id = ${id}`,[]).then(([tx, result]) => {
+                        console.log(result)
+                        resolve(result)
+                    })
+                }).then( result => this.closeDatabase()).catch( err => console.log(err))
+            }).catch( err => console.log(err))
+        })
+    }
 }
