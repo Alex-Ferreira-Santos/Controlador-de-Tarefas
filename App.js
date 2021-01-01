@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Database from './src/database/Database'
 import Tarefas from './src/model/Tarefas'
+import {styles} from './src/styles/index'
+import Tarefa from './src/components/Tarefa'
 
 export default class App extends Component {
 
@@ -43,25 +45,11 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
-        <Text>Open up App.js to start working on your app!</Text>
-        <Button title="Adicionar Tarefa" onPress={this.insertTarefa}/>
-        <Button title="Select Tarefa" onPress={this.selectTarefa}/>
-        <Button title="Select by id tarefa" onPress={this.selectByIdTarefa}/>
-        <Button title="Update Tarefa" onPress={this.updateTarefa}/>
-        <Button title="Delete Tarefa" onPress={this.deleteTarefa}/>
+        <Text style={styles.title}>Tarefas</Text>
+        <Tarefa/>
       </View>
     );
   }
 
   
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
