@@ -15,7 +15,7 @@ export default class App extends Component {
   insertTarefa(){
     const tarefa = new Tarefas(1,'teste de descricao','alta','19/10/2000')
     const db = new Database()
-    db.addProduct(tarefa)
+    db.addTarefa(tarefa)
   }
 
   selectTarefa(){
@@ -28,6 +28,12 @@ export default class App extends Component {
     db.SelectById(1)
   }
 
+  updateTarefa(){
+    const tarefa = new Tarefas(1,'teste de update','media','1/1/2021')
+    const db = new Database
+    db.updateTarefa(1, tarefa)
+  }
+
 
   render() {
     return (
@@ -37,6 +43,7 @@ export default class App extends Component {
         <Button title="Adicionar Tarefa" onPress={this.insertTarefa}/>
         <Button title="Select Tarefa" onPress={this.selectTarefa}/>
         <Button title="Select by id tarefa" onPress={this.selectByIdTarefa}/>
+        <Button title="Update Tarefa" onPress={this.updateTarefa}/>
       </View>
     );
   }

@@ -88,7 +88,7 @@ export default class Database{
         })
     }
 
-    addProduct(tarefa){
+    addTarefa(tarefa){
         return new Promise(resolve => {
             this.initDB().then(db =>{
                 db.transaction(tx => {
@@ -98,6 +98,20 @@ export default class Database{
                 }).then( results => {
                     this.closeDatabase(db)
                 }).catch( err => console.log(err))
+            }).catch( err => console.log(err))
+        })
+    }
+
+    updateTarefa(id, tarefa){
+        return new Promise(resolve => {
+            this.initDB().then( db => {
+                db.transaction( tx => {
+                    tx.executeSql(`UPDATE Tarefas SET descricao = '${tarefa.descricao}', dataDeTermino = '${tarefa.dataDeTermino}', prioridade = '${tarefa.prioridade}' WHERE id = ${id}`,[]).then(([tx,results]) => {
+                        console.log(results)
+                        
+                        resolve(results)
+                    })
+                }).then( results => this.closeDatabase()).catch( err => console.log(err))
             }).catch( err => console.log(err))
         })
     }
