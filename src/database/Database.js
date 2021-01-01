@@ -52,9 +52,10 @@ export default class Database{
                 db.transaction( tx => {
                     tx.executeSql('SELECT * FROM Tarefas',[]).then(([tx,result]) => {
                         console.log('Consulta completa')
-                        var len = result.row.length
+                        console.log(result.rows)
+                        var len = result.rows.length
                         for(let i = 0; i < len; i++){
-                            let row = result.row.item(i)
+                            let row = result.rows.item(i)
                             console.log(`Tarefa ID: ${row.id}, Tarefa descricao: ${row.descricao}, Tarefa dataDeTermino: ${dataDeTermino}, Tarefa prioridade: ${row.prioridade}`)
                             const {id,descricao,dataDeTermino,prioridade} = row
                             products.push({id,descricao,dataDeTermino, prioridade})
