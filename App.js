@@ -23,6 +23,11 @@ export default class App extends Component {
     db.Select()
   }
 
+  selectByIdTarefa(){
+    const db = new Database
+    db.SelectById(1)
+  }
+
 
   render() {
     return (
@@ -31,7 +36,7 @@ export default class App extends Component {
         <Text>Open up App.js to start working on your app!</Text>
         <Button title="Adicionar Tarefa" onPress={this.insertTarefa}/>
         <Button title="Select Tarefa" onPress={this.selectTarefa}/>
-        
+        <Button title="Select by id tarefa" onPress={this.selectByIdTarefa}/>
       </View>
     );
   }
