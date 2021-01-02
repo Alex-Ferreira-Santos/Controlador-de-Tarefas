@@ -15,7 +15,7 @@ class Tarefa extends Component {
 
     render() {
         return (
-            <View style={tarefa.container}>
+            <View style={[tarefa.container]}>
                 <View style={tarefa.checkBox}>
                     <CheckBox disabled={false} value={this.state.checked} onValueChange={(newValue) => {this.setState({checked: newValue})}} />
                 </View>
@@ -23,7 +23,7 @@ class Tarefa extends Component {
                     <Text>{this.props.descricao}</Text>
                 </View>
                 <View style={tarefa.data}>
-                    <Text>{this.props.dataDeTermino}</Text>
+                    <Text style={tarefa.time}>{this.props.dataDeTermino}</Text>
                 </View>
                 <View style={tarefa.prioridade}>
                     <Text>{this.props.prioridade}</Text>

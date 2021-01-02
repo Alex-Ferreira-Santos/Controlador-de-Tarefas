@@ -46,7 +46,26 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Tarefas</Text>
-        <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
+        <View style={styles.legend}>
+          <View>
+            <Text style={styles.textLower}>Check</Text>
+          </View>
+          <View style={[styles.border, styles.description]}>
+            <Text>descrição</Text>
+          </View>
+          <View style={[styles.border, styles.data]}>
+            <Text>data de término</Text>
+          </View>
+          <View style={[styles.prioridade]}>
+            <Text style={styles.textLower}>prioridade</Text>
+          </View>
+          <View style={[styles.border, styles.opcoes]}>
+            <Text>opções</Text>
+          </View>
+        </View>
+          <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
+        
+        
       </View>
     );
   }
