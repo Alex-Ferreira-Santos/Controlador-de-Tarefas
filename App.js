@@ -46,7 +46,7 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Tarefas</Text>
-        <Tarefa/>
+        <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
       </View>
     );
   }
