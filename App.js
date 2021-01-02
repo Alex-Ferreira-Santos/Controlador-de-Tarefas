@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Text, View,ScrollView } from 'react-native';
+import {Text, View,ScrollView, TouchableOpacity } from 'react-native';
 import Database from './src/database/Database'
 import Tarefas from './src/model/Tarefas'
 import {styles} from './src/styles/index'
@@ -66,7 +66,12 @@ export default class App extends Component {
           <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
           <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
           <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
-        
+          
+          <View style={styles.footer}>
+            <TouchableOpacity style={styles.button}>
+              <Text>Inserir nova tarefa</Text>
+            </TouchableOpacity>
+          </View>
       </ScrollView>
     );
   }

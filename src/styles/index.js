@@ -34,6 +34,22 @@ const styles = StyleSheet.create({
     data:{
         borderRightWidth: 1,
         paddingHorizontal: 3,
+    },
+    footer:{
+        width: width,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#C4C4C4',
+        position: 'absolute',
+        bottom:0,
+    },
+    button:{
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#3DCCAA',
+        width: '80%'
     }
 })
 
