@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {View, Text,TouchableOpacity} from 'react-native'
+import {View, Text,TouchableHighlight} from 'react-native'
 import {tarefa} from '../styles/index'
 import CheckBox from '@react-native-community/checkbox'
 
@@ -29,11 +29,13 @@ class Tarefa extends Component {
                     <Text>{this.props.prioridade}</Text>
                 </View>
                 <View style={tarefa.opcoes}>
-                    <TouchableOpacity style={tarefa.button} onPress={ () => { }}>
-                        <Text style={tarefa.text}>Editar</Text>
-                    </TouchableOpacity>
+                    <TouchableHighlight underlayColor='white' onPress={ () => { }}>
+                        <Text style={[tarefa.editar, tarefa.text]}>Editar</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight underlayColor='white' onPress={ () => { }}>
+                        <Text style={tarefa.text}>Excluir</Text>
+                    </TouchableHighlight>
                     
-                    <Text style={tarefa.text}>Excluir</Text>
                 </View>
             </View>
         )

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {Text, View } from 'react-native';
 import Database from './src/database/Database'
 import Tarefas from './src/model/Tarefas'
 import {styles} from './src/styles/index'

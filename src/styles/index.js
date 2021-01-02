@@ -54,9 +54,11 @@ const tarefa = StyleSheet.create({
     text:{
         textAlign: 'center',
         fontSize: 12,
+        color: 'blue',
+
     },
-    button:{
-        backgroundColor: 'lightblue',
+    editar:{
+        borderBottomWidth: 1,
     }
 })
 
