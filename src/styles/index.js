@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        
     },
     title:{
         fontSize: 34,
@@ -43,10 +42,12 @@ const tarefa = StyleSheet.create({
         backgroundColor: '#D6D6D6',
         width: '95%',
         borderWidth: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        textAlign: 'center',
     },
     description:{
         flex:0.8,
+        width:120,
         alignItems: 'center',
         justifyContent: 'center',
         borderRightWidth: 1,
@@ -56,7 +57,6 @@ const tarefa = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRightWidth: 1,
-        
     },
     data:{
         justifyContent: 'center',
@@ -74,16 +74,12 @@ const tarefa = StyleSheet.create({
         borderRightWidth: 1,
     },
     opcoes:{
-        flex:0.39,
+        flex:0.38,
     },
     text:{
         textAlign: 'center',
         fontSize: 12,
         color: 'blue',
-
-    },
-    editar:{
-        borderBottomWidth: 1,
     },
     done:{
         backgroundColor: 'rgba(24,169,0,0.5)',
@@ -93,6 +89,10 @@ const tarefa = StyleSheet.create({
     },
     textLate:{
         color: '#DCD300'
+    },
+    button:{
+        flex:1,
+        justifyContent: 'center',
     }
 })
 
