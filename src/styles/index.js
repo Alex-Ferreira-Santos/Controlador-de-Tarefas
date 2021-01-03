@@ -117,4 +117,38 @@ const tarefa = StyleSheet.create({
     }
 })
 
-export {styles, tarefa}
+const form = StyleSheet.create({
+    container:{
+        backgroundColor: '#C4c4c4',
+        width: width,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    title:{
+        fontSize:25,
+        margin: 10,
+    },
+    input:{
+        backgroundColor: '#F0F0F0',
+        borderRadius: 15,
+        height: 35,
+        borderWidth: 1,
+        paddingVertical: 7,
+        borderColor: '#959595'
+    },
+    inputDate:{
+        width: 200,
+        backgroundColor: '#f0f0f0',
+        borderLeftWidth: 0,
+        borderRadius: 15,
+    },
+    descricao:{
+        width: '80%',
+        height: 'auto',
+    },
+    label: {
+        fontSize: 15,
+    }
+})
+
+export {styles, tarefa,form}
