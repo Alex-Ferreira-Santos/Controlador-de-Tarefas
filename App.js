@@ -4,6 +4,7 @@ import Database from './src/database/Database'
 import Tarefas from './src/model/Tarefas'
 import {styles} from './src/styles/index'
 import Tarefa from './src/components/Tarefa'
+import Form from './src/components/Form'
 
 export default class App extends Component {
 
@@ -44,7 +45,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={{flex:1}}>
+      <ScrollView style={styles.container} contentContainerStyle={styles.containerScroll}>
         <Text style={styles.title}>Tarefas</Text>
         <View style={styles.legend}>
           <View>
@@ -66,13 +68,15 @@ export default class App extends Component {
           <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
           <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
           <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
-          
-          <View style={styles.footer}>
-            <TouchableOpacity style={styles.button}>
-              <Text>Inserir nova tarefa</Text>
-            </TouchableOpacity>
-          </View>
+
+          <Form/>
       </ScrollView>
+        <View style={styles.footer}>
+          <TouchableOpacity style={styles.button}>
+            <Text>Inserir nova tarefa</Text>
+          </TouchableOpacity>
+          </View>
+      </View>
     );
   }
 

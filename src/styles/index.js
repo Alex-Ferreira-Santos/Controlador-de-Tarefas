@@ -2,12 +2,16 @@ import {StyleSheet,Dimensions} from 'react-native'
 
 
 var width = Dimensions.get('window').width
+var height = Dimensions.get('window').height
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+    containerScroll:{
         alignItems: 'center',
+        minHeight:height - 30,
     },
     title:{
         fontSize: 34,
@@ -40,9 +44,10 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'flex-end',
         backgroundColor: '#C4C4C4',
         position: 'absolute',
-        bottom:0,
+        bottom: 0,
     },
     button:{
         borderRadius: 10,
