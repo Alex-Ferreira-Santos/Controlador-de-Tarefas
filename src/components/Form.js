@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {View,Text,TextInput} from 'react-native'
 import {form} from '../styles/index'
-import DataPicker from 'react-native-datepicker'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 
 class Form extends Component{
@@ -9,6 +9,8 @@ class Form extends Component{
         super(props)
         this.state={
             date: null,
+            mode: 'date',
+            show: false
         }
     }
     render() {
@@ -22,13 +24,19 @@ class Form extends Component{
                 <View>
                     <View>
                         <Text style={form.label}>Data de término</Text>
-                        <DataPicker style={form.inputDate} customStyles={{
-                            dateInput:{
-                                borderRadius:15,
-                                borderTopRightRadius: 0,
-                                borderBottomRightRadius: 0,
-                            },
-                        }} mode='date'/>
+                        <DateTimePicker mode="datetime" value={new Date(1598051730000)} onChange={(value,data)=> {
+
+
+
+
+                            alert(data.toString())
+                            //continuar a colocar o input de hora
+
+
+
+
+                        }} is24Hour={true}  
+                        />
                     </View>
                     <View>
                         <Text style={form.label}>Prioridade</Text>

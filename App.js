@@ -5,6 +5,7 @@ import Tarefas from './src/model/Tarefas'
 import {styles} from './src/styles/index'
 import Tarefa from './src/components/Tarefa'
 import Form from './src/components/Form'
+import {Teste} from './src/components/teste'
 
 export default class App extends Component {
 
