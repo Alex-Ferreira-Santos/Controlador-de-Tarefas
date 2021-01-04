@@ -119,7 +119,7 @@ const tarefa = StyleSheet.create({
 
 const form = StyleSheet.create({
     container:{
-        backgroundColor: '#C4c4c4',
+        backgroundColor: '#c4c4c4',
         width: width,
         justifyContent: 'center',
         alignItems: 'center',
@@ -158,4 +158,31 @@ const form = StyleSheet.create({
     }
 })
 
-export {styles, tarefa,form}
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+      fontSize: 16,
+      paddingVertical: 12,
+      paddingHorizontal: 10,
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 4,
+      color: 'black',
+      paddingRight: 30, 
+    },
+    inputAndroid: {  
+        width: 150,
+        backgroundColor: '#f0f0f0',
+        fontSize: 16,
+        paddingVertical: 2,
+        borderWidth: 1,
+        borderColor: '#959595',
+        borderRadius: 15,
+        color: 'black',
+    },
+    placeholder:{
+        fontSize: 14,
+        color: '#919191'
+    }
+  });
+
+export {styles, tarefa,form,pickerSelectStyles}

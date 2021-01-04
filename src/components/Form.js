@@ -1,7 +1,8 @@
 import React,{Component} from 'react'
-import {View,Text,TextInput} from 'react-native'
-import {form} from '../styles/index'
+import {View,Text,TextInput } from 'react-native'
+import {form, pickerSelectStyles} from '../styles/index'
 import DateTimePicker from '@react-native-community/datetimepicker'
+import RNPickerSelect from 'react-native-picker-select' ;
 
 
 class Form extends Component{
@@ -12,7 +13,10 @@ class Form extends Component{
             mode: 'date',
             show: false,
             time: '',
+            value:'Selecione a prioridade'
+            
         }
+        
     }
     render() {
         return (
@@ -48,8 +52,28 @@ class Form extends Component{
                     </View>
                     <View>
                         <Text style={form.label}>Prioridade</Text>
+                        <RNPickerSelect
+                            useNativeAndroidPickerStyle={false}
+                            placeholder={{
+                                label: 'Selecione a prioridade',
+                                value: null,
+                                color: '#9EA0A4',
+                              }}
+                            onValueChange={(value)=>{
+                                this.setState({value:value})
+                            }}
+                            style={pickerSelectStyles}
+                            items={[
+                                { label: 'Baixa', value: 'Baixa'},
+                                { label: 'Média', value: 'Media'},
+                                { label: 'Alta', value: 'Alta'},
+                            ]}
+                            value={this.state.value} 
+                        />
                     </View>
                 </View>
+
+                
             </View>
         )
     }
