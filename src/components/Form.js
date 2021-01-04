@@ -10,7 +10,8 @@ class Form extends Component{
         this.state={
             date: null,
             mode: 'date',
-            show: false
+            show: false,
+            time: '',
         }
     }
     render() {
@@ -21,22 +22,29 @@ class Form extends Component{
                     <Text style={form.label}>Descrição</Text>
                     <TextInput placeholder="Escreva a descrição aqui" style={form.input}/>
                 </View>
-                <View>
+                <View style={form.row}>
                     <View>
                         <Text style={form.label}>Data de término</Text>
-                        <DateTimePicker mode="datetime" value={new Date(1598051730000)} onChange={(value,data)=> {
+                        <TextInput style={form.input} placeholder="Coloque a data do fim" value={this.state.time} onFocus={()=>{this.setState({show: true})}}/>
+                        {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(1598051730000)} onChange={(value,data)=> {
+                            if(this.state.mode === 'date'){
+                                this.setState({mode:'time'})
+                            }
+                            
 
+                            let hour = data.toString().slice(15,21)
+                            let day = data.toString().slice(3,15)
+                            
+                            this.setState({time: `${day}${hour}`})
 
+                            if(this.state.mode === 'time'){
+                                this.setState({show:false})
+                                this.setState({mode:'date'})
+                            }
 
-
-                            alert(data.toString())
-                            //continuar a colocar o input de hora
-
-
-
-
+                            
                         }} is24Hour={true}  
-                        />
+                        />)}
                     </View>
                     <View>
                         <Text style={form.label}>Prioridade</Text>

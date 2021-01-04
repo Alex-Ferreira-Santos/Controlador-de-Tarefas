@@ -134,7 +134,9 @@ const form = StyleSheet.create({
         height: 35,
         borderWidth: 1,
         paddingVertical: 7,
-        borderColor: '#959595'
+        borderColor: '#959595',
+        marginBottom: 10
+        
     },
     inputDate:{
         width: 200,
@@ -148,6 +150,11 @@ const form = StyleSheet.create({
     },
     label: {
         fontSize: 15,
+    },
+    row:{
+        width: '80%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     }
 })
 
