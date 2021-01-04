@@ -8,10 +8,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        zIndex:0,
     },
     containerScroll:{
         alignItems: 'center',
-        minHeight:height - 30,
+        minHeight:height - 24,
     },
     title:{
         fontSize: 34,
@@ -44,9 +45,7 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf: 'flex-end',
         backgroundColor: '#C4C4C4',
-        position: 'absolute',
         bottom: 0,
     },
     button:{
@@ -55,6 +54,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#3DCCAA',
         width: '80%'
+    },
+    invisible:{
+        display: 'none',
     }
 })
 
@@ -119,10 +121,18 @@ const tarefa = StyleSheet.create({
 
 const form = StyleSheet.create({
     container:{
-        backgroundColor: '#c4c4c4',
+        backgroundColor: 'lightblue',
         width: width,
         justifyContent: 'center',
         alignItems: 'center',
+        zIndex: 1,
+        position: 'absolute',
+        paddingBottom: 10,
+        bottom: 0,
+        transform: [
+            {translateY:180}
+        ]
+        
     },
     title:{
         fontSize:25,
@@ -155,6 +165,13 @@ const form = StyleSheet.create({
         width: '80%',
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    button:{
+        backgroundColor: 'yellow',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:'50%',
+        borderRadius: 15,
     }
 })
 

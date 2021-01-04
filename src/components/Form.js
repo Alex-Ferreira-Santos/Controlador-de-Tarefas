@@ -1,30 +1,40 @@
 import React,{Component} from 'react'
-import {View,Text,TextInput } from 'react-native'
+import {View,Text,TextInput,TouchableHighlight } from 'react-native'
 import {form, pickerSelectStyles} from '../styles/index'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import RNPickerSelect from 'react-native-picker-select' ;
+import Tarefas from '../model/Tarefas'
+import Database from '../database/Database'
 
 
 class Form extends Component{
     constructor(props){
         super(props)
         this.state={
-            date: null,
             mode: 'date',
             show: false,
             time: '',
-            value:'Selecione a prioridade'
-            
+            prioridade:'Selecione a prioridade',
+            description: '',
         }
         
     }
+
+    insertTarefa(description,priority,date){
+        const tarefa = new Tarefas(description,priority,date)
+        const db = new Database()
+        db.addTarefa(tarefa)
+    }
+
     render() {
         return (
-            <View style={form.container}>
-                <Text style={form.title}>Cadastrar nova tarefa</Text>
+            <View style={[form.container,this.props.show]}>
+                <Text style={form.title}>{this.props.titulo}</Text>
                 <View style={form.descricao}>
                     <Text style={form.label}>Descrição</Text>
-                    <TextInput placeholder="Escreva a descrição aqui" style={form.input}/>
+                    <TextInput placeholder="Escreva a descrição aqui" style={form.input} onChangeText={(value)=>{
+                        this.setState({description: value})
+                    }}/>
                 </View>
                 <View style={form.row}>
                     <View>
@@ -60,7 +70,7 @@ class Form extends Component{
                                 color: '#9EA0A4',
                               }}
                             onValueChange={(value)=>{
-                                this.setState({value:value})
+                                this.setState({prioridade: value})
                             }}
                             style={pickerSelectStyles}
                             items={[
@@ -68,11 +78,15 @@ class Form extends Component{
                                 { label: 'Média', value: 'Media'},
                                 { label: 'Alta', value: 'Alta'},
                             ]}
-                            value={this.state.value} 
+                            value={this.state.prioridade} 
                         />
                     </View>
                 </View>
-
+                <TouchableHighlight style={form.button} onPress={()=>{
+                    this.insertTarefa(this.state.description,this.state.prioridade,this.state.time)
+                }}>
+                    <Text>{this.props.button}</Text>
+                </TouchableHighlight>
                 
             </View>
         )

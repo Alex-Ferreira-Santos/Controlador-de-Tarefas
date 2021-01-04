@@ -5,21 +5,19 @@ import Tarefas from './src/model/Tarefas'
 import {styles} from './src/styles/index'
 import Tarefa from './src/components/Tarefa'
 import Form from './src/components/Form'
+import { Button } from 'react-native';
 
 export default class App extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      teste: 'teste'
+      teste: 'teste',
+      show: '',
+      hideInsert: {position: 'absolute'}
     }
   }
 
-  insertTarefa(){
-    const tarefa = new Tarefas(1,'teste de descricao','alta','19/10/2000')
-    const db = new Database()
-    db.addTarefa(tarefa)
-  }
 
   selectTarefa(){
     const db = new Database
@@ -69,13 +67,18 @@ export default class App extends Component {
           <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
           <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
 
-          <Form/>
+          <Form show={this.state.show} titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>
       </ScrollView>
-        <View style={styles.footer}>
-          <TouchableOpacity style={styles.button}>
+        <View style={[this.state.hideInsert,styles.footer]}>
+          <TouchableOpacity style={styles.button} onPress={() =>{ 
+            this.setState({show: {transform:[{translateY:0}]}})
+            this.setState({hideInsert: styles.invisible})
+            
+          }}>
             <Text>Inserir nova tarefa</Text>
           </TouchableOpacity>
-          </View>
+        </View>
+        {/*<Button title='Select' onClick={this.selectTarefa()}/>*/}
       </View>
     );
   }

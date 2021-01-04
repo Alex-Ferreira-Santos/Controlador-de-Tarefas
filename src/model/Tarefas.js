@@ -1,6 +1,5 @@
 export default class Tarefas{
-    constructor(id, descricao,dataDeTermino, prioridade){
-        this.id = id
+    constructor(descricao,dataDeTermino, prioridade){
         this.descricao = descricao
         this.dataDeTermino = dataDeTermino
         this.prioridade = prioridade
