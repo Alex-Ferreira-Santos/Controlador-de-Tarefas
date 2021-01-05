@@ -168,7 +168,7 @@ const form = StyleSheet.create({
         paddingBottom: 10,
         bottom: 0,
         transform: [
-            {translateY:180}
+            {translateY:215}
         ]
         
     },
@@ -193,7 +193,7 @@ const form = StyleSheet.create({
         borderRadius: 15,
     },
     descricao:{
-        width: '80%',
+        width:310,
         height: 'auto',
     },
     label: {
@@ -208,9 +208,16 @@ const form = StyleSheet.create({
         backgroundColor: 'yellow',
         justifyContent: 'center',
         alignItems: 'center',
-        width:'50%',
+        width:'48%',
         borderRadius: 15,
-    }
+    },
+    voltar:{
+        backgroundColor: 'rgba(192,69,69,0.9)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:'48%',
+        borderRadius: 15,
+    },
 })
 
 const pickerSelectStyles = StyleSheet.create({

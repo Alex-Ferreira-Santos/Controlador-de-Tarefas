@@ -39,7 +39,7 @@ export default class Database{
             console.log("Fechando Banco de dados")
             db.close().then( status => {
                 console.log("Banco de dados desconectado")
-            }).catch(error => this.errorCB(error))
+            }).catch(error => console.log(error))
         }else{
             console.log("A conexão com o banco não está aberta")
         }
@@ -51,8 +51,6 @@ export default class Database{
             this.initDB().then( db => {
                 db.transaction( tx => {
                     tx.executeSql('SELECT * FROM Tarefas',[]).then(([tx,result]) => {
-                        console.log('Consulta completa')
-                        console.log(result)
                         var len = result.rows.length
                         for(let i = 0; i < len; i++){
                             let row = result.rows.item(i)
@@ -60,7 +58,7 @@ export default class Database{
                             const {id,descricao,dataDeTermino,prioridade} = row
                             products.push({id,descricao,dataDeTermino, prioridade})
                         }
-                        console.log(products)
+                         
                         resolve(products)
                     })
                 }).then(result => this.closeDatabase(db)).catch(err => console.log(err))

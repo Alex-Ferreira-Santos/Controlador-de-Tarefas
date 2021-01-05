@@ -13,8 +13,6 @@ export default class App extends Component {
     super(props);
     this.state = {
       teste: 'teste',
-      show: '',
-      hideInsert: {position: 'absolute'}
     }
   }
 
@@ -67,19 +65,11 @@ export default class App extends Component {
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
         <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
-
-        <Form show={this.state.show} titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>
+        
+        
       </ScrollView>
-        <View style={[this.state.hideInsert,styles.footer]}>
-          <TouchableOpacity style={styles.button} onPress={() =>{ 
-            this.setState({show: {transform:[{translateY:0}]}})
-            this.setState({hideInsert: styles.invisible})
-            
-          }}>
-            <Text>Inserir nova tarefa</Text>
-          </TouchableOpacity>
-        </View>
-        {/*<Button title='Select' onClick={this.selectTarefa()}/>
+        <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>
+        <Button title='Select' onClick={this.selectTarefa()}/>
         
         
         
@@ -87,7 +77,7 @@ export default class App extends Component {
         
         
         
-        O ID AINDA ESTÁ VINDO NULL
+        {/*O ID AINDA ESTÁ VINDO NULL*/}
         
         
         
@@ -97,7 +87,7 @@ export default class App extends Component {
         
         
         
-        */}
+        
       </View>
     );
   }
