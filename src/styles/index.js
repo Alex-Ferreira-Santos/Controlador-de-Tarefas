@@ -26,19 +26,31 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderLeftWidth: 1,
         alignItems: 'center',
+        textAlign: 'center',
+    },
+    center: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
     },
     textLower:{
-        fontSize: 11.5,
+        fontSize: 11.3,
     },
     border: {
         borderLeftWidth: 1,
     },
     description:{
-        paddingHorizontal: 29,
+        width:'30%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRightWidth: 1,
+        paddingHorizontal: 5,
     },
     data:{
+        width:'30%',
+        justifyContent: 'center',
         borderRightWidth: 1,
-        paddingHorizontal: 3,
+        paddingHorizontal: 5,
     },
     footer:{
         width: width,
@@ -47,6 +59,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#C4C4C4',
         bottom: 0,
+    },
+    check: {
+        width:'10%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRightWidth: 1,
+    },
+    prioridade:{
+        width:'17%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+        borderRightWidth: 1,
+    },
+    opcoes:{
+        width:'13%',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     button:{
         borderRadius: 10,
@@ -68,20 +98,20 @@ const tarefa = StyleSheet.create({
         flexDirection: 'row',
         textAlign: 'center',
     },
+    center: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+    },
     description:{
-        flex:0.8,
-        width:120,
+        width:'30%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRightWidth: 1,
         paddingHorizontal: 5,
     },
-    checkBox: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRightWidth: 1,
-    },
     data:{
+        width:'30%',
         justifyContent: 'center',
         borderRightWidth: 1,
         paddingHorizontal: 5,
@@ -89,15 +119,23 @@ const tarefa = StyleSheet.create({
     time:{
         fontSize: 12,
     },
+    checkBox: {
+        width:'10%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRightWidth: 1,
+    },
     prioridade:{
-        flex:0.3,
+        width:'17%',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 5,
+        
         borderRightWidth: 1,
     },
     opcoes:{
-        flex:0.38,
+        width:'13%',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     text:{
         textAlign: 'center',

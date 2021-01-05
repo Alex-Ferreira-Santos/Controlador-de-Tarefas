@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {Text, View,ScrollView, TouchableOpacity } from 'react-native';
 import Database from './src/database/Database'
 import Tarefas from './src/model/Tarefas'
-import {styles} from './src/styles/index'
+import {styles,tarefa} from './src/styles/index'
 import Tarefa from './src/components/Tarefa'
 import Form from './src/components/Form'
 import { Button } from 'react-native';
@@ -46,28 +46,29 @@ export default class App extends Component {
       <View style={{flex:1}}>
       <ScrollView style={styles.container} contentContainerStyle={styles.containerScroll}>
         <Text style={styles.title}>Tarefas</Text>
-        <View style={styles.legend}>
-          <View>
+        <View style={[tarefa.container]}>
+          <View style={styles.check}>
             <Text style={styles.textLower}>Check</Text>
           </View>
-          <View style={[styles.border, styles.description]}>
-            <Text>descrição</Text>
+          <View style={styles.description}>
+            <Text style={styles.textLower}>Descrição</Text>
           </View>
-          <View style={[styles.border, styles.data]}>
-            <Text>data de término</Text>
+          <View style={styles.data}>
+            <Text style={styles.textLower}>Data de término</Text>
           </View>
-          <View style={[styles.prioridade]}>
+          <View style={styles.prioridade}>
             <Text style={styles.textLower}>prioridade</Text>
           </View>
-          <View style={[styles.border, styles.opcoes]}>
-            <Text>opções</Text>
+          <View style={styles.opcoes}>
+            <Text style={styles.textLower}>Opções</Text>
           </View>
         </View>
-          <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
-          <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
-          <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
+        
+        <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
+        <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
+        <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
 
-          <Form show={this.state.show} titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>
+        <Form show={this.state.show} titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>
       </ScrollView>
         <View style={[this.state.hideInsert,styles.footer]}>
           <TouchableOpacity style={styles.button} onPress={() =>{ 
@@ -78,7 +79,25 @@ export default class App extends Component {
             <Text>Inserir nova tarefa</Text>
           </TouchableOpacity>
         </View>
-        {/*<Button title='Select' onClick={this.selectTarefa()}/>*/}
+        {/*<Button title='Select' onClick={this.selectTarefa()}/>
+        
+        
+        
+        
+        
+        
+        
+        O ID AINDA ESTÁ VINDO NULL
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        */}
       </View>
     );
   }

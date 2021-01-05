@@ -20,20 +20,20 @@ class Tarefa extends Component {
                     <CheckBox disabled={false} value={this.state.checked} onValueChange={(newValue) => {this.setState({checked: newValue})}} />
                 </View>
                 <View style={tarefa.description}>
-                    <Text >{this.props.descricao}</Text>
+                    <Text style={tarefa.center}>{this.props.descricao}</Text>
                 </View>
                 <View style={tarefa.data}>
-                    <Text style={[tarefa.time]}>{this.props.dataDeTermino}</Text>
+                    <Text style={[tarefa.time,tarefa.center]}>{this.props.dataDeTermino}</Text>
                 </View>
                 <View style={tarefa.prioridade}>
-                    <Text>{this.props.prioridade}</Text>
+                    <Text style={tarefa.center}>{this.props.prioridade}</Text>
                 </View>
                 <View style={tarefa.opcoes}>
                     <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { }}>
-                        <Text style={[tarefa.text, tarefa.editar]}>Editar</Text>
+                        <Text style={[tarefa.text, tarefa.editar,tarefa.center]}>Editar</Text>
                     </TouchableHighlight>
                     <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { }}>
-                        <Text style={tarefa.text}>Excluir</Text>
+                        <Text style={[tarefa.text,tarefa.center]}>Excluir</Text>
                     </TouchableHighlight>
                 </View>
             </View>
