@@ -69,7 +69,7 @@ export default class App extends Component {
         
       </ScrollView>
         <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>
-        <Button title='Select' onClick={this.selectTarefa()}/>
+        {/*<Button title='Select' onClick={this.selectTarefa}/>*/}  
         
         
         
@@ -77,7 +77,7 @@ export default class App extends Component {
         
         
         
-        {/*O ID AINDA ESTÁ VINDO NULL*/}
+       
         
         
         

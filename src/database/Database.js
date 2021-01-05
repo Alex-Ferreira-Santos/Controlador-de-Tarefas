@@ -24,7 +24,7 @@ export default class Database{
                     console.log(`Erro recebido ${error}`)
                     console.log("O banco de dados não está pronto ... Criando dados")
                     db.transaction((tx)=>{
-                        tx.executeSql("CREATE TABLE IF NOT EXISTS Tarefas(id, descricao, dataDeTermino, prioridade)")
+                        tx.executeSql("CREATE TABLE IF NOT EXISTS Tarefas(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, descricao VARCHAR(255) NOT NULL, dataDeTermino VARCHAR(255) NOT NULL, prioridade VARCHAR(255) NOT NULL)")
                     }).then(()=>{
                         console.log("Tabela criada com sucesso")
                     }).catch(error => console.log(error))

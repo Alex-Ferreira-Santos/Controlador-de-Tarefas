@@ -44,7 +44,7 @@ class Form extends Component{
                     <Text style={form.title}>{this.props.titulo}</Text>
                     <View style={form.descricao}>
                         <Text style={form.label}>Descrição</Text>
-                        <TextInput placeholder="Escreva a descrição aqui" style={form.input} onChangeText={(value)=>{
+                        <TextInput required={true} placeholder="Escreva a descrição aqui" style={form.input} onChangeText={(value)=>{
                             this.setState({description: value})
                         }}/>
                     </View>
