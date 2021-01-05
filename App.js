@@ -5,7 +5,6 @@ import Tarefas from './src/model/Tarefas'
 import {styles,tarefa} from './src/styles/index'
 import Tarefa from './src/components/Tarefa'
 import Form from './src/components/Form'
-import { Button } from 'react-native';
 
 export default class App extends Component {
 
@@ -69,7 +68,6 @@ export default class App extends Component {
         
       </ScrollView>
         <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>
-        {/*<Button title='Select' onClick={this.selectTarefa}/>*/}  
         
         
         

@@ -1,4 +1,6 @@
 import SQLite from 'react-native-sqlite-storage'
+import Tarefa from '../components/Tarefa'
+import React from 'react'
 
 
 SQLite.DEBUG(true)
