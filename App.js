@@ -23,10 +23,10 @@ export default class App extends Component {
     db.Select().then(data => {
       tarefas = data;
       console.log('======================='+data[1].descricao+'================')
-      
-      
+      //tarefas.lenght === 2
     })
-    return tarefas
+    //tarefas.lenght === 0
+    return tarefas.length
   }
 
   selectByIdTarefa(){
@@ -73,7 +73,7 @@ export default class App extends Component {
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
         <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
-        <Text>{this.state.tarefas.length}</Text>
+        <Text>{this.state.tarefas}</Text>
         
         {/* this.state.tarefas.length tá retornando 0*/}
         
