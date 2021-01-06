@@ -64,7 +64,7 @@ export default class Database{
                     })
                 }).then(result => this.closeDatabase(db)).catch(err => console.log(err))
             }).catch( err => console.log(err))
-        }) 
+        })
     }
 
     SelectById(id){

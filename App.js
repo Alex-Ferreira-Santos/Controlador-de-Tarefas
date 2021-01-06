@@ -12,38 +12,24 @@ export default class App extends Component {
     super(props);
     this.state = {
       teste: 'teste',
-      tarefas: [],
-      isLoading: true,
-      notFound: 'Products not found.\nPlease click (+) button to add it.'
     }
-    this.keyExtractor = (item, index) => index.toString()
+    this.tarefas = this.selectTarefa()
   }
 
 
   selectTarefa(){
     let tarefas = []
     const db = new Database
-    db.Select().then((data) => {
+    db.Select().then(data => {
       tarefas = data;
-      this.setState({
-        tarefas,
-        isLoading: false,
-      });
-    }).catch((err) => {
-      console.log(err);
-      this.setState = { 
-        isLoading: false
-      }
+      console.log('======================='+data[1].descricao+'================')  
+      
     })
-    
+    return tarefas
   }
 
-  renderTarefa = ({ tarefa }) => (
-    <Tarefa descricao={tarefa.descricao} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade}/> 
-  )
-
   selectByIdTarefa(){
-    const db = new Database
+    const db = new Database 
     db.SelectById(1)
   }
 
@@ -52,26 +38,14 @@ export default class App extends Component {
     const db = new Database
     db.updateTarefa(1, tarefa) 
   }
-
+ 
   deleteTarefa(){
     const db = new Database
     db.deleteTarefa(1)
   }
-
-  componentDidMount() {
-      this.selectTarefa(); 
-  }
  
 
   render() {
-    
-    if(this.state.tarefas.length === 0){
-      return(
-        <View>
-          <Text style={styles.message}>{this.state.notFound}</Text>
-        </View>
-      )
-    }
 
     return (
       <View style={{flex:1}}>
@@ -98,12 +72,12 @@ export default class App extends Component {
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
         <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
+        {this.tarefas.forEach(tarefa => 
+            (<Tarefa descricao={tarefa.descricao} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioriade}/>)
+          )
 
-        <FlatList
-          keyExtractor={this.keyExtractor}
-          data={this.state.tarefas}
-          renderItem={this.renderTarefa}
-        />
+        }
+        
         
         
         
