@@ -12,8 +12,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       teste: 'teste',
+      tarefas: this.selectTarefa()
     }
-    this.tarefas = this.selectTarefa()
   }
 
 
@@ -22,7 +22,8 @@ export default class App extends Component {
     const db = new Database
     db.Select().then(data => {
       tarefas = data;
-      console.log('======================='+data[1].descricao+'================')  
+      console.log('======================='+data[1].descricao+'================')
+      
       
     })
     return tarefas
@@ -41,7 +42,7 @@ export default class App extends Component {
  
   deleteTarefa(){
     const db = new Database
-    db.deleteTarefa(1)
+    db.deleteTarefa(1) 
   }
  
 
@@ -72,16 +73,15 @@ export default class App extends Component {
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
         <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
-        {this.tarefas.forEach(tarefa => 
-            (<Tarefa descricao={tarefa.descricao} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioriade}/>)
-          )
-
-        }
+        <Text>{this.state.tarefas.length}</Text>
+        
+        {/* this.state.tarefas.length tá retornando 0*/}
         
         
         
         
       </ScrollView>
+        
         <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'}/> 
         
         
