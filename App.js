@@ -9,23 +9,31 @@ import Form from './src/components/Form'
 export default class App extends Component {
 
   constructor(props){
-    super(props);
+    super(props); 
     this.state = {
       teste: 'teste',
-      tarefas: ''
+      tarefas: []
     }
-    this.tarefas
+    this.tarefas = []
+    this.selectTarefa()
   }
 
-
-  selectTarefa(){
-    let tarefas = []
-    const db = new Database
-    db.Select().then(data => {
-      this.setState({tarefas: data.length})
+  async selectTarefa(){
+   
+    const db = new Database 
+    await db.Select().then(data => {
+      this.atribuiValor(data)
+      console.log('======================='+this.tarefas[0][0].descricao+'================')
       console.log('======================='+data[1].descricao+'================')
+       
     })
-    
+    console.log('======================= '+this.tarefas[0][0].descricao+' ================')
+    this.setState({tarefas: this.tarefas})
+  }
+  
+
+  atribuiValor(data){
+    this.tarefas.push(data)
   }
 
   selectByIdTarefa(){
@@ -43,19 +51,18 @@ export default class App extends Component {
     const db = new Database
     db.deleteTarefa(1) 
   }
-
-  componentDidMount(){
-    this.selectTarefa()
-  }
  
 
-  render() {
-
-    return (
-      <View style={{flex:1}}>
+  render() {  
+     
+    if(this.state.tarefas !== []){
+      console.log('======================= '+this.state.tarefas+' ================')
+    }
+    return ( 
+      <View style={{flex:1}}> 
       <ScrollView style={styles.container} contentContainerStyle={styles.containerScroll}>
         <Text style={styles.title}>Tarefas</Text>
-        <View style={[tarefa.container]}>
+        <View style={[tarefa.container]}> 
           <View style={styles.check}>
             <Text style={styles.textLower}>Check</Text>
           </View>
@@ -76,8 +83,8 @@ export default class App extends Component {
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
         <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
-        <Text>{this.state.tarefas}</Text>
         
+  
         {/* this.state.tarefas.length tá retornando 0*/}
         
         
