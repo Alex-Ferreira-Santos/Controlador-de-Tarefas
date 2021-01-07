@@ -12,8 +12,9 @@ export default class App extends Component {
     super(props);
     this.state = {
       teste: 'teste',
-      tarefas: this.selectTarefa()
+      tarefas: ''
     }
+    this.tarefas
   }
 
 
@@ -21,12 +22,10 @@ export default class App extends Component {
     let tarefas = []
     const db = new Database
     db.Select().then(data => {
-      tarefas = data;
+      this.setState({tarefas: data.length})
       console.log('======================='+data[1].descricao+'================')
-      //tarefas.lenght === 2
     })
-    //tarefas.lenght === 0
-    return tarefas.length
+    
   }
 
   selectByIdTarefa(){
@@ -43,6 +42,10 @@ export default class App extends Component {
   deleteTarefa(){
     const db = new Database
     db.deleteTarefa(1) 
+  }
+
+  componentDidMount(){
+    this.selectTarefa()
   }
  
 
