@@ -22,16 +22,11 @@ export default class App extends Component {
    
     const db = new Database 
     await db.Select().then(data => {
-      this.atribuiValor(data)
-      console.log('======================='+this.tarefas[0][0].descricao+'================')
-      console.log('======================='+data[1].descricao+'================')
-       
+      this.atribuiValor(data)    
     })
-    console.log('======================= '+this.tarefas[0][0].descricao+' ================')
     this.setState({tarefas: this.tarefas})
   }
   
-
   atribuiValor(data){
     this.tarefas.push(data)
   }
@@ -85,6 +80,7 @@ export default class App extends Component {
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
         <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
+        
         {this.state.tarefas[0].map( tarefa => 
           (<Tarefa descricao={tarefa.descricao} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade}/>)
           
@@ -96,7 +92,7 @@ export default class App extends Component {
         
       </ScrollView>
         
-        <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'}/> 
+        <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'} funcao={()=>{this.setState({tarefas: this.tarefas})}}/>   
         
         
         

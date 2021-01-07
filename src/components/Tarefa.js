@@ -8,7 +8,10 @@ class Tarefa extends Component {
     constructor(props){
         super(props)
         this.state = {
-            checked: false
+            checked: false,
+            done: '',
+            late: ''
+            
         }
     }
     
@@ -16,9 +19,16 @@ class Tarefa extends Component {
 
     render() {
         return (
-            <View style={[tarefa.container]}>
+            <View style={[tarefa.container,this.state.done,this.state.late]}>
                 <View style={tarefa.checkBox}>
-                    <CheckBox disabled={false} value={this.state.checked} onValueChange={(newValue) => {this.setState({checked: newValue})}} />
+                    <CheckBox disabled={false} value={this.state.checked} onValueChange={(newValue) => {
+                        this.setState({checked: newValue})
+                        if(!this.state.checked){
+                            this.setState({done: tarefa.done})
+                        }else{
+                            this.setState({done:''})
+                        }
+                        }} />
                 </View>
                 <View style={tarefa.description}>
                     <Text style={tarefa.center}>{this.props.descricao}</Text>

@@ -106,6 +106,9 @@ class Form extends Component{
                         </TouchableOpacity>
                         <TouchableHighlight style={form.button} onPress={()=>{
                             this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
+                            this.props.funcao
+                            this.setState({invisible: ''}) 
+                            this.setState({hideInsert: ''})
                         }}>
                             <Text>{this.props.button}</Text>
                         </TouchableHighlight>

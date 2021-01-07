@@ -12,7 +12,10 @@ const styles = StyleSheet.create({
     },
     containerScroll:{
         alignItems: 'center',
-        minHeight:height - 24,
+        minHeight: height - 24,
+        paddingBottom: 50
+        
+        
     },
     title:{
         fontSize: 34,
