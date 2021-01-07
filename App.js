@@ -12,7 +12,7 @@ export default class App extends Component {
     super(props); 
     this.state = {
       teste: 'teste',
-      tarefas: []
+      tarefas: [],
     }
     this.tarefas = []
     this.selectTarefa()
@@ -29,6 +29,9 @@ export default class App extends Component {
   
   atribuiValor(data){
     this.tarefas.push(data)
+    if(this.tarefas.length > 1){
+      this.tarefas.pop()
+    }
   }
 
   selectByIdTarefa(){
@@ -49,12 +52,9 @@ export default class App extends Component {
  
 
   render() {  
-     
     if(this.state.tarefas[0] === undefined){
       return <Text>Loading</Text>
-    }else{
-
-    
+    }else{  
     return ( 
       <View style={{flex:1}}> 
       <ScrollView style={styles.container} contentContainerStyle={styles.containerScroll}>
@@ -81,36 +81,13 @@ export default class App extends Component {
         <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
         <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
         
-        {this.state.tarefas[0].map( tarefa => 
-          (<Tarefa descricao={tarefa.descricao} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade}/>)
+        {this.state.tarefas[0].map( tarefa =>
+          (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade}/>)
           
-        )}
-  
-        
-        
-        
-        
+        )} 
       </ScrollView>
-        
-        <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'} funcao={()=>{this.setState({tarefas: this.tarefas})}}/>   
-        
-        
-        
-        
-        
-        
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+         
+        <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>                 
       </View>
     );
   }

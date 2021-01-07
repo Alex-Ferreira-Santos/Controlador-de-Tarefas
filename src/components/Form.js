@@ -53,23 +53,57 @@ class Form extends Component{
                             <Text style={form.label}>Data de término</Text>
                             <TextInput style={form.input} placeholder="Coloque a data do fim" value={this.state.time} onFocus={()=>{this.setState({show: true})}}/>
                             {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(1598051730000)} onChange={(value,data)=> {
+                                let hour = ''
+                                let day = ''
                                 if(data === undefined){
                                     return;
                                 }
                                 if(this.state.mode === 'date'){
+                                    day = data.toString().slice(3,15)
+                                    console.log(day)
                                     this.setState({mode:'time'})
                                 }
-                                
 
-                                let hour = data.toString().slice(15,21)
-                                let day = data.toString().slice(3,15)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                //O tempo está vindo sempre dia 21 de agosto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 
-                                this.setState({time: `${day}${hour}`})
 
                                 if(this.state.mode === 'time'){
+                                    hour = data.toString().slice(15,21)
+                                    console.log(day)
                                     this.setState({show:false})
                                     this.setState({mode:'date'})
                                 }
+
+                                this.setState({time: `${day}${hour}`})
 
                                 
                             }} is24Hour={true}  
@@ -105,10 +139,11 @@ class Form extends Component{
                             <Text>Voltar</Text>
                         </TouchableOpacity>
                         <TouchableHighlight style={form.button} onPress={()=>{
+                            
                             this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
-                            this.props.funcao
                             this.setState({invisible: ''}) 
                             this.setState({hideInsert: ''})
+                            
                         }}>
                             <Text>{this.props.button}</Text>
                         </TouchableHighlight>
