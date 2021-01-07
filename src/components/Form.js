@@ -22,8 +22,8 @@ class Form extends Component{
         
     }
 
-    insertTarefa(description,priority,date){
-        const tarefa = new Tarefas(description,priority,date)
+    insertTarefa(description,date,priority){
+        const tarefa = new Tarefas(description,date,priority)
         const db = new Database()
         db.addTarefa(tarefa)
     }
@@ -105,7 +105,7 @@ class Form extends Component{
                             <Text>Voltar</Text>
                         </TouchableOpacity>
                         <TouchableHighlight style={form.button} onPress={()=>{
-                            this.insertTarefa(this.state.description,this.state.prioridade,this.state.time)
+                            this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
                         }}>
                             <Text>{this.props.button}</Text>
                         </TouchableHighlight>
