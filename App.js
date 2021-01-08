@@ -17,14 +17,14 @@ export default class App extends Component {
       formTitle: 'Cadastrar nova tarefa',
       idTarefa: null,
     }
-    this.edit = this.edit.bind(this)
+    this.edit = this.edit.bind(this) 
     this.selectByIdTarefa = this.selectByIdTarefa.bind(this)
     this.selectTarefa = this.selectTarefa.bind(this)
     this.tarefas = []
     this.tarefa = []
     this.selectTarefa()
   }
-
+  
   async selectTarefa(){
    
     const db = new Database 

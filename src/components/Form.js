@@ -5,7 +5,6 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import RNPickerSelect from 'react-native-picker-select' ;
 import Tarefas from '../model/Tarefas'
 import Database from '../database/Database'
-import App from '../../App'
 
 
 class Form extends Component{
@@ -32,6 +31,15 @@ class Form extends Component{
         } 
     }
 
+    checkEdit(){
+        if(this.props.tarefa[0] !== undefined){
+            this.state.description = this.props.tarefa[0].descricao
+            this.state.time = this.props.tarefa[0].dataDeTermino
+            this.state.prioridade = this.props.tarefa[0].prioridade
+            console.log(this.state.prioridade)
+        }
+    }
+
     insertTarefa(description,date,priority){
         const tarefa = new Tarefas(description,date,priority)
         const db = new Database()
@@ -49,6 +57,7 @@ class Form extends Component{
             this.setState({invisible: {transform:[{translateY:0}]}})
             this.setState({hideInsert: styles.invisible}) 
         } 
+        this.checkEdit()
         return ( 
             <View style={[form.container,this.state.invisible]}>
                 <View style={[this.state.hideInsert,styles.footer]}>
@@ -64,7 +73,7 @@ class Form extends Component{
                     <Text style={form.title}>{this.props.titulo}</Text>
                     <View style={form.descricao}>
                         <Text style={form.label}>Descrição</Text>
-                        <TextInput required={true} placeholder="Escreva a descrição aqui" style={form.input} onChangeText={(value)=>{
+                        <TextInput required={true} placeholder="Escreva a descrição aqui" style={form.input} value={this.state.description} onChangeText={(value)=>{
                             this.setState({description: value})
                         }}/>
                     </View>
@@ -81,7 +90,7 @@ class Form extends Component{
                                     this.setState({mode:'time'})
                                     return;
                                 }
-
+ 
 
                                 if(this.state.mode === 'time'){
                                     this.setState({hour: data.toString().slice(15,21)})
@@ -126,13 +135,13 @@ class Form extends Component{
                         </TouchableOpacity>
                         <TouchableHighlight style={form.button} onPress={()=>{
                             if(this.props.button === 'Inserir'){
-                                const app = new App
                                 this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
                                 this.setState({invisible: ''}) 
                                 this.setState({hideInsert: ''})
                                 this.props.select()
                             }else{
                                 this.updateTarefa(this.props.tarefa[0].id,this.state.description,this.state.time,this.state.prioridade)
+                                this.props.select()
                             }
                             
                             
