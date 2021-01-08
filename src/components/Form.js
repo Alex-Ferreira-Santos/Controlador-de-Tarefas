@@ -17,7 +17,9 @@ class Form extends Component{
             prioridade:'Selecione a prioridade',
             description: '',
             invisible: '',
-            hideInsert: ''
+            hideInsert: '',
+            hour: '',
+            day:''
         }
         
     }
@@ -54,56 +56,28 @@ class Form extends Component{
                             <TextInput style={form.input} placeholder="Coloque a data do fim" value={this.state.time} onFocus={()=>{this.setState({show: true})}}/>
                             {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(1598051730000)} onChange={(value,data)=> {
                                 let hour = ''
-                                let day = ''
                                 if(data === undefined){
                                     return;
                                 }
                                 if(this.state.mode === 'date'){
-                                    day = data.toString().slice(3,15)
-                                    console.log(day)
+                                    this.setState({day: data.toString().slice(3,15)})
+                                    console.log(this.state.day)
+                                    console.log(this.state.hour)
                                     this.setState({mode:'time'})
+                                    return;
                                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                 //O tempo está vindo sempre dia 21 de agosto
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                
-
                                 if(this.state.mode === 'time'){
-                                    hour = data.toString().slice(15,21)
-                                    console.log(day)
+                                    this.setState({hour: data.toString().slice(15,21)})
+                                    console.log(this.state.day)
+                                    console.log(this.state.hour)
                                     this.setState({show:false})
                                     this.setState({mode:'date'})
                                 }
 
-                                this.setState({time: `${day}${hour}`})
+                                this.setState({time: `${this.state.day}${this.state.hour}`})
 
                                 
                             }} is24Hour={true}  
