@@ -19,6 +19,7 @@ export default class App extends Component {
     }
     this.edit = this.edit.bind(this)
     this.selectByIdTarefa = this.selectByIdTarefa.bind(this)
+    this.selectTarefa = this.selectTarefa.bind(this)
     this.tarefas = []
     this.tarefa = []
     this.selectTarefa()
@@ -41,7 +42,7 @@ export default class App extends Component {
   atribuiValor(data,array){ 
     array.push(data)
     if(array.length > 1){
-      array.pop()
+      array.shift()
     }
   }
 
@@ -51,7 +52,6 @@ export default class App extends Component {
       this.atribuiValor(data,this.tarefa)
     })
     this.setState({tarefa: this.tarefa})
-    console.log('========================='+this.state.tarefa[0].id)
   }
  
   deleteTarefa(){
@@ -91,7 +91,7 @@ export default class App extends Component {
         )} 
       </ScrollView> 
          
-        <Form titulo={this.state.formTitle} button={this.state.formButton} id={0}/>                 
+        <Form titulo={this.state.formTitle} button={this.state.formButton} tarefa={this.state.tarefa} select={this.selectTarefa}/>                 
       </View>
     );
   }

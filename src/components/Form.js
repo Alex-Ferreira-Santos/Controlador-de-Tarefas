@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import RNPickerSelect from 'react-native-picker-select' ;
 import Tarefas from '../model/Tarefas'
 import Database from '../database/Database'
+import App from '../../App'
 
 
 class Form extends Component{
@@ -56,7 +57,7 @@ class Form extends Component{
                         this.setState({hideInsert: styles.invisible})
                         
                     }}> 
-                        <Text>Inserir nova tarefa</Text>
+                        <Text>Inserir nova tarefa</Text> 
                     </TouchableOpacity> 
                 </View>
                 <View>
@@ -125,11 +126,13 @@ class Form extends Component{
                         </TouchableOpacity>
                         <TouchableHighlight style={form.button} onPress={()=>{
                             if(this.props.button === 'Inserir'){
+                                const app = new App
                                 this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
                                 this.setState({invisible: ''}) 
                                 this.setState({hideInsert: ''})
+                                this.props.select()
                             }else{
-                                this.updateTarefa(this.props.id,this.state.description,this.state.time,this.state.prioridade)
+                                this.updateTarefa(this.props.tarefa[0].id,this.state.description,this.state.time,this.state.prioridade)
                             }
                             
                             
