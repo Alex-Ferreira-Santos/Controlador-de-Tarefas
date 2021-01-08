@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {View, Text,TouchableHighlight} from 'react-native'
-import {tarefa} from '../styles/index'
+import {tarefa,styles} from '../styles/index'
 import CheckBox from '@react-native-community/checkbox'
 
 
@@ -40,7 +40,9 @@ class Tarefa extends Component {
                     <Text style={tarefa.center}>{this.props.prioridade}</Text>
                 </View>
                 <View style={tarefa.opcoes}>
-                    <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { }}>
+                    <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { 
+                        this.props.funcao()
+                    }}>
                         <Text style={[tarefa.text, tarefa.editar,tarefa.center]}>Editar</Text>
                     </TouchableHighlight>
                     <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { }}>

@@ -21,13 +21,23 @@ class Form extends Component{
             hour: '',
             day:''
         }
+        this.hide = this.hide.bind(this)
         
+    }
+    hide(){
+
     }
 
     insertTarefa(description,date,priority){
         const tarefa = new Tarefas(description,date,priority)
         const db = new Database()
         db.addTarefa(tarefa)
+    }
+
+    updateTarefa(id,description,date,priority){ 
+        const tarefa = new Tarefas(description,date,priority)
+        const db = new Database
+        db.updateTarefa(id, tarefa)
     }
 
     render() {
@@ -113,10 +123,14 @@ class Form extends Component{
                             <Text>Voltar</Text>
                         </TouchableOpacity>
                         <TouchableHighlight style={form.button} onPress={()=>{
+                            if(this.props.button === 'Inserir'){
+                                this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
+                                this.setState({invisible: ''}) 
+                                this.setState({hideInsert: ''})
+                            }else{
+                                this.updateTarefa(    0  ,this.state.description,this.state.time,this.state.prioridade)
+                            }
                             
-                            this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
-                            this.setState({invisible: ''}) 
-                            this.setState({hideInsert: ''})
                             
                         }}>
                             <Text>{this.props.button}</Text>

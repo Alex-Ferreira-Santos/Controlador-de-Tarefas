@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Text, View,ScrollView, FlatList } from 'react-native';
+import {Text, View,ScrollView} from 'react-native';
 import Database from './src/database/Database'
 import Tarefas from './src/model/Tarefas'
 import {styles,tarefa} from './src/styles/index'
@@ -13,7 +13,11 @@ export default class App extends Component {
     this.state = {
       teste: 'teste',
       tarefas: [],
+      formButton: 'Inserir',
+      formTitle: 'Cadastrar nova tarefa',
+      idTarefa: null
     }
+    this.edit = this.edit.bind(this)
     this.tarefas = []
     this.selectTarefa()
   }
@@ -25,6 +29,13 @@ export default class App extends Component {
       this.atribuiValor(data)    
     })
     this.setState({tarefas: this.tarefas})
+  }
+
+  edit(){
+    this.setState({invisible: ''}) 
+    this.setState({hideInsert: ''})
+    this.setState({formButton: 'Editar'})
+    this.setState({formTitle: 'Editar uma tarefa'})
   }
   
   atribuiValor(data){
@@ -38,18 +49,11 @@ export default class App extends Component {
     const db = new Database 
     db.SelectById(1)
   }
-
-  updateTarefa(){ 
-    const tarefa = new Tarefas(1,'teste de update','media','1/1/2021')
-    const db = new Database
-    db.updateTarefa(1, tarefa) 
-  }
  
   deleteTarefa(){
     const db = new Database
     db.deleteTarefa(1) 
   }
- 
 
   render() {  
     if(this.state.tarefas[0] === undefined){
@@ -77,17 +81,13 @@ export default class App extends Component {
           </View>
         </View>
         
-        <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Baixa'}/>
-        <Tarefa descricao={'Estudar para a prova de matematica amanha'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Alta'}/>
-        <Tarefa descricao={'lavar a louça'} dataDeTermino={'01/01/2021 10:00'} prioridade={'Media'}/>
-        
         {this.state.tarefas[0].map( tarefa =>
-          (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade}/>)
+          (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade} funcao={this.edit}/>)
           
         )} 
-      </ScrollView>
+      </ScrollView> 
          
-        <Form titulo={'Cadastrar nova tarefa'} button={'Inserir'}/>                 
+        <Form titulo={this.state.formTitle} button={this.state.formButton}/>                 
       </View>
     );
   }
