@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import {Text, View,ScrollView} from 'react-native';
 import Database from './src/database/Database'
-import Tarefas from './src/model/Tarefas'
 import {styles,tarefa} from './src/styles/index'
 import Tarefa from './src/components/Tarefa'
 import Form from './src/components/Form'
@@ -13,12 +12,15 @@ export default class App extends Component {
     this.state = {
       teste: 'teste',
       tarefas: [],
+      tarefa: [],
       formButton: 'Inserir',
       formTitle: 'Cadastrar nova tarefa',
-      idTarefa: null
+      idTarefa: null,
     }
     this.edit = this.edit.bind(this)
+    this.selectByIdTarefa = this.selectByIdTarefa.bind(this)
     this.tarefas = []
+    this.tarefa = []
     this.selectTarefa()
   }
 
@@ -26,35 +28,37 @@ export default class App extends Component {
    
     const db = new Database 
     await db.Select().then(data => {
-      this.atribuiValor(data)    
+      this.atribuiValor(data,this.tarefas)    
     })
     this.setState({tarefas: this.tarefas})
   }
 
   edit(){
-    this.setState({invisible: ''}) 
-    this.setState({hideInsert: ''})
     this.setState({formButton: 'Editar'})
-    this.setState({formTitle: 'Editar uma tarefa'})
+    this.setState({formTitle: 'Editar uma tarefa'}) 
   }
   
-  atribuiValor(data){
-    this.tarefas.push(data)
-    if(this.tarefas.length > 1){
-      this.tarefas.pop()
+  atribuiValor(data,array){ 
+    array.push(data)
+    if(array.length > 1){
+      array.pop()
     }
   }
 
-  selectByIdTarefa(){
+  async selectByIdTarefa(id){
     const db = new Database 
-    db.SelectById(1)
+    await db.SelectById(id).then(data => {
+      this.atribuiValor(data,this.tarefa)
+    })
+    this.setState({tarefa: this.tarefa})
+    console.log('========================='+this.state.tarefa[0].id)
   }
  
   deleteTarefa(){
     const db = new Database
     db.deleteTarefa(1) 
   }
-
+ 
   render() {  
     if(this.state.tarefas[0] === undefined){
       return <Text>Loading</Text>
@@ -82,12 +86,12 @@ export default class App extends Component {
         </View>
         
         {this.state.tarefas[0].map( tarefa =>
-          (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade} funcao={this.edit}/>)
+          (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade} funcao={this.selectByIdTarefa} id={tarefa.id}/>) 
           
         )} 
       </ScrollView> 
          
-        <Form titulo={this.state.formTitle} button={this.state.formButton}/>                 
+        <Form titulo={this.state.formTitle} button={this.state.formButton} id={0}/>                 
       </View>
     );
   }

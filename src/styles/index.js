@@ -178,6 +178,7 @@ const form = StyleSheet.create({
     title:{
         fontSize:25,
         margin: 10,
+        textAlign: 'center'
     },
     input:{
         backgroundColor: '#F0F0F0',

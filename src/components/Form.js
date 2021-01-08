@@ -22,10 +22,13 @@ class Form extends Component{
             day:''
         }
         this.hide = this.hide.bind(this)
-        
     }
-    hide(){
 
+    hide(){
+        if(this.props.button !== 'Inserir'){
+            this.setState({invisible: {transform:[{translateY:0}]}})
+            this.setState({hideInsert: styles.invisible}) 
+        } 
     }
 
     insertTarefa(description,date,priority){
@@ -41,16 +44,20 @@ class Form extends Component{
     }
 
     render() {
-        return (
+        if(this.props.button !== 'Inserir'){
+            this.setState({invisible: {transform:[{translateY:0}]}})
+            this.setState({hideInsert: styles.invisible}) 
+        } 
+        return ( 
             <View style={[form.container,this.state.invisible]}>
                 <View style={[this.state.hideInsert,styles.footer]}>
                     <TouchableOpacity style={styles.button} onPress={() =>{ 
                         this.setState({invisible: {transform:[{translateY:0}]}})
                         this.setState({hideInsert: styles.invisible})
                         
-                    }}>
+                    }}> 
                         <Text>Inserir nova tarefa</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> 
                 </View>
                 <View>
                     <Text style={form.title}>{this.props.titulo}</Text>
@@ -65,24 +72,18 @@ class Form extends Component{
                             <Text style={form.label}>Data de término</Text>
                             <TextInput style={form.input} placeholder="Coloque a data do fim" value={this.state.time} onFocus={()=>{this.setState({show: true})}}/>
                             {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(1598051730000)} onChange={(value,data)=> {
-                                let hour = ''
                                 if(data === undefined){
                                     return;
                                 }
                                 if(this.state.mode === 'date'){
                                     this.setState({day: data.toString().slice(3,15)})
-                                    console.log(this.state.day)
-                                    console.log(this.state.hour)
                                     this.setState({mode:'time'})
                                     return;
                                 }
 
-                                //O tempo está vindo sempre dia 21 de agosto
 
                                 if(this.state.mode === 'time'){
                                     this.setState({hour: data.toString().slice(15,21)})
-                                    console.log(this.state.day)
-                                    console.log(this.state.hour)
                                     this.setState({show:false})
                                     this.setState({mode:'date'})
                                 }
@@ -128,7 +129,7 @@ class Form extends Component{
                                 this.setState({invisible: ''}) 
                                 this.setState({hideInsert: ''})
                             }else{
-                                this.updateTarefa(    0  ,this.state.description,this.state.time,this.state.prioridade)
+                                this.updateTarefa(this.props.id,this.state.description,this.state.time,this.state.prioridade)
                             }
                             
                             

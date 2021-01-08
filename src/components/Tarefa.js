@@ -14,7 +14,6 @@ class Tarefa extends Component {
             
         }
     }
-    
     /*Colocar função de edição via props */
 
     render() {
@@ -41,7 +40,7 @@ class Tarefa extends Component {
                 </View>
                 <View style={tarefa.opcoes}>
                     <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { 
-                        this.props.funcao()
+                        this.props.funcao(this.props.id)
                     }}>
                         <Text style={[tarefa.text, tarefa.editar,tarefa.center]}>Editar</Text>
                     </TouchableHighlight>
