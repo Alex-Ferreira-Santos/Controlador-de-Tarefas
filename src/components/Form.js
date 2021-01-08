@@ -36,7 +36,6 @@ class Form extends Component{
             this.state.description = this.props.tarefa[0].descricao
             this.state.time = this.props.tarefa[0].dataDeTermino
             this.state.prioridade = this.props.tarefa[0].prioridade
-            console.log(this.state.prioridade)
         }
     }
 
@@ -156,3 +155,8 @@ class Form extends Component{
 }
 
 export default Form
+
+
+// O TEXTO NÃO ESTÁ SENDO POSSIVEL DE EDITAR
+// MUDAR O TEXTO DE INSERT PARA EDITAR
+// FAZER CHECK DE HORA
