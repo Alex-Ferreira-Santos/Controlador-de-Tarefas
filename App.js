@@ -26,17 +26,17 @@ export default class App extends Component {
   }
    
   async selectTarefa(){
-   
+    
     const db = new Database  
     await db.Select().then(data => {
-      this.atribuiValor(data,this.tarefas)    
+      this.atribuiValor(data,this.tarefas)   
     })
     this.setState({tarefas: this.tarefas})
   }
-
+ 
   edit(){
     this.setState({formButton: 'Editar'})
-    this.setState({formTitle: 'Editar a tarefa de'}) 
+    this.setState({formTitle: 'Editar a tarefa'}) 
   }
   
   atribuiValor(data,array){ 
@@ -52,6 +52,7 @@ export default class App extends Component {
       this.atribuiValor(data,this.tarefa)
     })
     this.setState({tarefa: this.tarefa})
+    this.edit()
   }
  
   deleteTarefa(){

@@ -55,7 +55,6 @@ export default class Database{
                         var len = result.rows.length
                         for(let i = 0; i < len; i++){
                             let row = result.rows.item(i)
-                            console.log(`Tarefa ID: ${row.id}, Tarefa descricao: ${row.descricao}, Tarefa dataDeTermino: ${row.dataDeTermino}, Tarefa prioridade: ${row.prioridade}`)
                             const {id,descricao,dataDeTermino,prioridade} = row
                             products.push({id,descricao,dataDeTermino, prioridade})
                         }
@@ -68,15 +67,12 @@ export default class Database{
     }
 
     SelectById(id){
-        console.log(id)
         return new Promise( resolve => {
             this.initDB().then(db => {
                 db.transaction( tx => {
                     tx.executeSql(`SELECT * FROM Tarefas WHERE id = ${id}`,[]).then(([tx, result]) => {
-                        console.log(result)
                         if(result.rows.length > 0) {
                             let row = result.rows.item(0)
-                            console.log(`Tarefa ID: ${row.id}, Tarefa descricao: ${row.descricao}, Tarefa dataDeTermino: ${row.dataDeTermino}, Tarefa prioridade: ${row.prioridade}`)
                             resolve(row)
                         }
                     })

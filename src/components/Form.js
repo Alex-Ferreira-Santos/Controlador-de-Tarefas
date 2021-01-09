@@ -22,24 +22,23 @@ class Form extends Component{
             day:'',
             edit: false
         }
-        this.hide = this.hide.bind(this)
+        
     }
 
-    hide(){
-        if(this.props.button !== 'Inserir'){
-            this.setState({invisible: {transform:[{translateY:0}]}})
-            this.setState({hideInsert: styles.invisible}) 
-        } 
-    }
-
-    checkEdit(){
+    checkEdit(){ 
         if(this.props.tarefa[0] !== undefined){
-            this.state.edit = true 
-            this.state.invisible =  {transform:[{translateY:0}]}
-            this.state.hideInsert = styles.invisible
+            
             this.state.description = this.props.tarefa[0].descricao
             this.state.time = this.props.tarefa[0].dataDeTermino
             this.state.prioridade = this.props.tarefa[0].prioridade
+            this.state.edit = true
+            if(this.state.edit){
+                this.state.invisible =  {transform:[{translateY:0}]}
+                this.state.hideInsert = styles.invisible
+                return
+            }
+            
+            
         }
     }
 
@@ -56,10 +55,6 @@ class Form extends Component{
     }
 
     render() {
-        if(this.props.button !== 'Inserir'){
-            this.setState({invisible: {transform:[{translateY:0}]}})
-            this.setState({hideInsert: styles.invisible}) 
-        } 
         this.checkEdit()
         return ( 
             <View style={[form.container,this.state.invisible]}>
@@ -77,14 +72,14 @@ class Form extends Component{
                     {this.state.edit && (<Text style={form.tarefa}>{this.state.description}</Text>)}
                     <View style={form.descricao}>
                         <Text style={form.label}>Descrição</Text>
-                        <TextInput required={true} placeholder="Escreva a descrição aqui" style={form.input} value={this.state.description} onChangeText={(value)=>{
+                        <TextInput required={true} placeholder="Escreva a descrição aqui" style={form.input} onChangeText={(value)=>{
                             this.setState({description: value})
                         }}/>
                     </View>
                     <View style={form.row}>
                         <View>
                             <Text style={form.label}>Data de término</Text>
-                            <TextInput style={form.input} placeholder="Coloque a data do fim" value={this.state.time} onFocus={()=>{this.setState({show: true})}}/>
+                            <TextInput style={form.input} placeholder="Coloque a data do fim" onFocus={()=>{this.setState({show: true})}}/>
                             {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(1598051730000)} onChange={(value,data)=> {
                                 if(data === undefined){
                                     return;
@@ -126,7 +121,6 @@ class Form extends Component{
                                     { label: 'Média', value: 'Media'},
                                     { label: 'Alta', value: 'Alta'},
                                 ]}
-                                value={this.state.prioridade} 
                             />
                         </View>
                     </View>
@@ -134,6 +128,8 @@ class Form extends Component{
                         <TouchableOpacity style={form.voltar} onPress={()=>{
                             this.setState({invisible: ''})
                             this.setState({hideInsert: ''})
+                            this.setState({edit: false})
+                            this.props.tarefa[0] = undefined
                         }}>
                             <Text>Voltar</Text>
                         </TouchableOpacity>
@@ -142,9 +138,11 @@ class Form extends Component{
                                 this.insertTarefa(this.state.description,this.state.time,this.state.prioridade)
                                 this.setState({invisible: ''}) 
                                 this.setState({hideInsert: ''})
+                                this.setState({edit : false})
                                 this.props.select()
                             }else{
                                 this.updateTarefa(this.props.tarefa[0].id,this.state.description,this.state.time,this.state.prioridade)
+                                this.setState({edit: false})
                                 this.props.select()
                             }
                             
@@ -162,6 +160,5 @@ class Form extends Component{
 export default Form
 
 
-// O TEXTO NÃO ESTÁ SENDO POSSIVEL DE EDITAR
 // MUDAR O TEXTO DE INSERT PARA EDITAR
 // FAZER CHECK DE HORA
