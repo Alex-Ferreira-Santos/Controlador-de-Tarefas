@@ -44,7 +44,7 @@ export default class App extends Component {
     if(array.length > 1){
       array.shift()
     }
-  }
+  } 
 
   async selectByIdTarefa(id){
     const db = new Database 
@@ -59,7 +59,7 @@ export default class App extends Component {
     const db = new Database
     db.deleteTarefa(1) 
   }
- 
+
   render() {  
     if(this.state.tarefas[0] === undefined){
       return <Text>Loading</Text>

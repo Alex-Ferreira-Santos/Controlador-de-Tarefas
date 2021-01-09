@@ -20,17 +20,15 @@ class Form extends Component{
             hideInsert: '',
             hour: '',
             day:'',
-            edit: false
+            edit: false,
+            descricao:'',
         }
         
     }
 
     checkEdit(){ 
         if(this.props.tarefa[0] !== undefined){
-            
-            this.state.description = this.props.tarefa[0].descricao
-            this.state.time = this.props.tarefa[0].dataDeTermino
-            this.state.prioridade = this.props.tarefa[0].prioridade
+            this.state.descricao = this.props.tarefa[0].descricao
             this.state.edit = true
             if(this.state.edit){
                 this.state.invisible =  {transform:[{translateY:0}]}
@@ -69,7 +67,7 @@ class Form extends Component{
                 </View>
                 <View>
                     <Text style={form.title}>{this.props.titulo} </Text>
-                    {this.state.edit && (<Text style={form.tarefa}>{this.state.description}</Text>)}
+                    {this.state.edit && (<Text style={form.tarefa}>{this.state.descricao}</Text>)}
                     <View style={form.descricao}>
                         <Text style={form.label}>Descrição</Text>
                         <TextInput required={true} placeholder="Escreva a descrição aqui" style={form.input} onChangeText={(value)=>{
@@ -79,7 +77,7 @@ class Form extends Component{
                     <View style={form.row}>
                         <View>
                             <Text style={form.label}>Data de término</Text>
-                            <TextInput style={form.input} placeholder="Coloque a data do fim" onFocus={()=>{this.setState({show: true})}}/>
+                            <TextInput style={form.input} placeholder="Coloque a data do fim" value={this.state.time} onFocus={()=>{this.setState({show: true})}}/>
                             {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(1598051730000)} onChange={(value,data)=> {
                                 if(data === undefined){
                                     return;
@@ -89,8 +87,8 @@ class Form extends Component{
                                     this.setState({mode:'time'})
                                     return;
                                 }
+  
  
-
                                 if(this.state.mode === 'time'){
                                     this.setState({hour: data.toString().slice(15,21)})
                                     this.setState({show:false})
