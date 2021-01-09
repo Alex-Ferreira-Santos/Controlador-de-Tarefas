@@ -65,7 +65,7 @@ export default class App extends Component {
       return <Text>Loading</Text>
     }else{  
     return ( 
-      <View style={{flex:1}}> 
+      <View style={{flex:1}}>
       <ScrollView style={styles.container} contentContainerStyle={styles.containerScroll}>
         <Text style={styles.title}>Tarefas</Text>
         <View style={[tarefa.container]}> 

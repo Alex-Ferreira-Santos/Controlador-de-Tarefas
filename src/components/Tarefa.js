@@ -14,7 +14,6 @@ class Tarefa extends Component {
             
         }
     }
-    /*Colocar função de edição via props */
 
     render() {
         return (

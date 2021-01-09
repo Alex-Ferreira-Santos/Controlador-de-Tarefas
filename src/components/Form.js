@@ -22,6 +22,7 @@ class Form extends Component{
             day:'',
             edit: false,
             descricao:'',
+            dataAtual: Date.now()
         }
         
     }
@@ -78,7 +79,7 @@ class Form extends Component{
                         <View>
                             <Text style={form.label}>Data de término</Text>
                             <TextInput style={form.input} placeholder="Coloque a data do fim" value={this.state.time} onFocus={()=>{this.setState({show: true})}}/>
-                            {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(1598051730000)} onChange={(value,data)=> {
+                            {this.state.show && (<DateTimePicker mode={this.state.mode} value={new Date(this.state.dataAtual)} onChange={(value,data)=> {
                                 if(data === undefined){
                                     return;
                                 }
