@@ -149,14 +149,18 @@ const tarefa = StyleSheet.create({
         backgroundColor: 'rgba(24,169,0,0.5)',
     },
     late:{
-        backgroundColor: 'rgba(192,69,69,0.9)',
+        backgroundColor: 'rgba(192,69,69,0.7)',
     },
     textLate:{
-        color: '#DCD300'
+        color: '#EBE780'
     },
     button:{
         flex:1,
         justifyContent: 'center',
+    },
+    editar:{
+        width: '100%',
+        borderBottomWidth: 1
     }
 })
 
