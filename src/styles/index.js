@@ -175,6 +175,10 @@ const form = StyleSheet.create({
         ]
         
     },
+    tarefa:{
+        fontSize: 16,
+        textAlign: 'center'
+    },
     title:{
         fontSize:25,
         margin: 10,

@@ -19,7 +19,8 @@ class Form extends Component{
             invisible: '',
             hideInsert: '',
             hour: '',
-            day:''
+            day:'',
+            edit: false
         }
         this.hide = this.hide.bind(this)
     }
@@ -33,6 +34,9 @@ class Form extends Component{
 
     checkEdit(){
         if(this.props.tarefa[0] !== undefined){
+            this.state.edit = true 
+            this.state.invisible =  {transform:[{translateY:0}]}
+            this.state.hideInsert = styles.invisible
             this.state.description = this.props.tarefa[0].descricao
             this.state.time = this.props.tarefa[0].dataDeTermino
             this.state.prioridade = this.props.tarefa[0].prioridade
@@ -69,7 +73,8 @@ class Form extends Component{
                     </TouchableOpacity> 
                 </View>
                 <View>
-                    <Text style={form.title}>{this.props.titulo}</Text>
+                    <Text style={form.title}>{this.props.titulo} </Text>
+                    {this.state.edit && (<Text style={form.tarefa}>{this.state.description}</Text>)}
                     <View style={form.descricao}>
                         <Text style={form.label}>Descrição</Text>
                         <TextInput required={true} placeholder="Escreva a descrição aqui" style={form.input} value={this.state.description} onChangeText={(value)=>{
