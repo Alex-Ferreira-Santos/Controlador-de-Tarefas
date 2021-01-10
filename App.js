@@ -4,6 +4,7 @@ import Database from './src/database/Database'
 import {styles,tarefa} from './src/styles/index'
 import Tarefa from './src/components/Tarefa'
 import Form from './src/components/Form'
+import PopUp from './src/components/PopUp'
 
 export default class App extends Component {
 
@@ -91,7 +92,7 @@ export default class App extends Component {
           
         )} 
       </ScrollView> 
-         
+         <PopUp description={'teste de descricao'}/>
         <Form titulo={this.state.formTitle} button={this.state.formButton} tarefa={this.state.tarefa} select={this.selectTarefa}/>                 
       </View>
     );

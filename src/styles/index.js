@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 34,
         margin: 60,
+        height: 400,
     },
     legend: {
         flexDirection: 'row',
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#C4C4C4',
+        backgroundColor: '#AFAFAF',
         bottom: 0,
     },
     check: {
@@ -257,6 +258,20 @@ const pickerSelectStyles = StyleSheet.create({
         fontSize: 14,
         color: '#919191'
     }
-  });
+});
 
-export {styles, tarefa,form,pickerSelectStyles}
+const popup = StyleSheet.create({
+    container:{
+        position: 'absolute',
+        top: height/3,
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#c4c4c4'
+    },
+    title:{
+        fontSize:30
+    }
+})
+
+export {styles, tarefa,form,pickerSelectStyles,popup}
