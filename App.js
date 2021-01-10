@@ -16,7 +16,7 @@ export default class App extends Component {
       tarefa: [],
       formButton: 'Inserir',
       formTitle: 'Cadastrar nova tarefa',
-      idTarefa: null,
+      visible: '',
     }
     this.edit = this.edit.bind(this) 
     this.selectByIdTarefa = this.selectByIdTarefa.bind(this)
@@ -91,8 +91,10 @@ export default class App extends Component {
           (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade} funcao={this.selectByIdTarefa} id={tarefa.id}/>) 
           
         )} 
-      </ScrollView> 
-         <PopUp description={'teste de descricao'}/>
+      </ScrollView>
+        <View style={[styles.view,this.state.visible]}>
+          <PopUp description={'teste de descricao'}/>
+        </View>
         <Form titulo={this.state.formTitle} button={this.state.formButton} tarefa={this.state.tarefa} select={this.selectTarefa}/>                 
       </View>
     );

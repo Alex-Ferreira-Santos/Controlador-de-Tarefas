@@ -8,8 +8,8 @@ class PopUp extends Component {
             <View style={popup.container}>
                 <Text style={popup.title}>Excluir Produto</Text>
                 <Text style={popup.textCenter}>Tem certeza que deseja excluir a tarefa de:</Text>
-                <Text style={popup.textCenter}>{this.props.description}</Text>
-                <View>
+                <Text style={popup.description}>{this.props.description}</Text>
+                <View style={popup.buttons}>
                     <TouchableHighlight style={popup.voltar}>
                         <Text style={popup.textCenter}>Voltar</Text>
                     </TouchableHighlight>

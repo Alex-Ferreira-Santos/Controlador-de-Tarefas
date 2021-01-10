@@ -13,14 +13,11 @@ const styles = StyleSheet.create({
     containerScroll:{
         alignItems: 'center',
         minHeight: height - 24,
-        paddingBottom: 50
-        
-        
+        paddingBottom: 50,     
     },
     title:{
         fontSize: 34,
         margin: 60,
-        height: 400,
     },
     legend: {
         flexDirection: 'row',
@@ -86,11 +83,20 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#3DCCAA',
+        backgroundColor: '#00E0FF',
         width: '80%'
     },
     invisible:{
         display: 'none',
+    },
+    view:{
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.5)',
     }
 })
 
@@ -262,24 +268,42 @@ const pickerSelectStyles = StyleSheet.create({
 
 const popup = StyleSheet.create({
     container:{
-        
+        minHeight: 150,
         alignItems: 'center',
         width: '80%',
         top: height/3,
         position: 'absolute',
-        backgroundColor: 'lightblue'
+        backgroundColor: 'lightblue',
     },
     title:{
-        fontSize:30
+        fontSize:30,
+        marginBottom: 10,
     },
     textCenter:{
         textAlign: 'center'
     },
+    description:{
+        marginTop: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
     voltar:{
-        backgroundColor: '#afafaf'
+        backgroundColor: '#afafaf',
+        width: '45%',
+        borderRadius: 10,
     },
     excluir:{
-        backgroundColor: 'rgba(192,69,69,0.9)'
+        backgroundColor: 'rgba(192,69,69,0.9)',
+        width: '45%',
+        borderRadius: 10,
+    },
+    buttons:{
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        position: 'absolute',
+        bottom: 0,
+        marginBottom: 7,
     }
 })
 
