@@ -23,6 +23,7 @@ export default class App extends Component {
     this.selectByIdTarefa = this.selectByIdTarefa.bind(this)
     this.selectTarefa = this.selectTarefa.bind(this)
     this.selectByIdTarefaToExclude = this.selectByIdTarefaToExclude.bind(this)
+    this.closePopUp = this.closePopUp.bind(this)
     this.tarefas = []
     this.tarefa = []
     this.tarefaExclude = []
@@ -67,10 +68,9 @@ export default class App extends Component {
     this.setState({tarefaExclude: this.tarefaExclude})
     this.setState({visible: true})
   }
- 
-  deleteTarefa(){
-    const db = new Database
-    db.deleteTarefa(1) 
+
+  closePopUp(){
+    this.setState({visible: false})
   }
 
   render() {  
@@ -106,7 +106,7 @@ export default class App extends Component {
       </ScrollView>
       {this.state.visible && (
         <View style={styles.view}>
-          <PopUp description={this.state.tarefaExclude}/>
+          <PopUp description={this.state.tarefaExclude} close={this.closePopUp} select={this.selectTarefa}/>
         </View>
       )}
         
