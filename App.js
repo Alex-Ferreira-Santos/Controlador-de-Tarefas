@@ -14,15 +14,18 @@ export default class App extends Component {
       teste: 'teste',
       tarefas: [],
       tarefa: [],
+      tarefaExclude: [],
       formButton: 'Inserir',
       formTitle: 'Cadastrar nova tarefa',
-      visible: '',
+      visible: false,
     }
     this.edit = this.edit.bind(this) 
     this.selectByIdTarefa = this.selectByIdTarefa.bind(this)
     this.selectTarefa = this.selectTarefa.bind(this)
+    this.selectByIdTarefaToExclude = this.selectByIdTarefaToExclude.bind(this)
     this.tarefas = []
     this.tarefa = []
+    this.tarefaExclude = []
     this.selectTarefa()
   }
    
@@ -54,6 +57,15 @@ export default class App extends Component {
     })
     this.setState({tarefa: this.tarefa})
     this.edit()
+  }
+
+  async selectByIdTarefaToExclude(id){
+    const db = new Database 
+    await db.SelectById(id).then(data => {
+      this.atribuiValor(data,this.tarefaExclude)
+    })
+    this.setState({tarefaExclude: this.tarefaExclude})
+    this.setState({visible: true})
   }
  
   deleteTarefa(){
@@ -88,13 +100,16 @@ export default class App extends Component {
         </View>
         
         {this.state.tarefas[0].map( tarefa =>
-          (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade} funcao={this.selectByIdTarefa} id={tarefa.id}/>) 
+          (<Tarefa descricao={tarefa.descricao} key={tarefa.id} dataDeTermino={tarefa.dataDeTermino} prioridade={tarefa.prioridade} funcao={this.selectByIdTarefa} excluir={this.selectByIdTarefaToExclude} id={tarefa.id}/>) 
           
         )} 
       </ScrollView>
-        <View style={[styles.view,this.state.visible]}>
-          <PopUp description={'teste de descricao'}/>
+      {this.state.visible && (
+        <View style={styles.view}>
+          <PopUp description={this.state.tarefaExclude}/>
         </View>
+      )}
+        
         <Form titulo={this.state.formTitle} button={this.state.formButton} tarefa={this.state.tarefa} select={this.selectTarefa}/>                 
       </View>
     );

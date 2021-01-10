@@ -54,7 +54,9 @@ class Tarefa extends Component {
                     }}>
                         <Text style={[tarefa.text, tarefa.center]}>Editar</Text>
                     </TouchableHighlight>
-                    <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { }}>
+                    <TouchableHighlight style={tarefa.button} underlayColor='white' onPress={ () => { 
+                        this.props.excluir(this.props.id)
+                    }}>
                         <Text style={[tarefa.text,tarefa.center]}>Excluir</Text>
                     </TouchableHighlight>
                 </View>
