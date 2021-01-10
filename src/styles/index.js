@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 const tarefa = StyleSheet.create({
     container:{
         backgroundColor: '#D6D6D6',
-        width: '95%',
+        width: '98%',
         borderWidth: 1,
         flexDirection: 'row',
         textAlign: 'center',
@@ -262,15 +262,24 @@ const pickerSelectStyles = StyleSheet.create({
 
 const popup = StyleSheet.create({
     container:{
-        position: 'absolute',
-        top: height/3,
-        width: '80%',
-        justifyContent: 'center',
+        
         alignItems: 'center',
-        backgroundColor: '#c4c4c4'
+        width: '80%',
+        top: height/3,
+        position: 'absolute',
+        backgroundColor: 'lightblue'
     },
     title:{
         fontSize:30
+    },
+    textCenter:{
+        textAlign: 'center'
+    },
+    voltar:{
+        backgroundColor: '#afafaf'
+    },
+    excluir:{
+        backgroundColor: 'rgba(192,69,69,0.9)'
     }
 })
 
