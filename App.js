@@ -24,6 +24,7 @@ export default class App extends Component {
     this.selectTarefa = this.selectTarefa.bind(this)
     this.selectByIdTarefaToExclude = this.selectByIdTarefaToExclude.bind(this)
     this.closePopUp = this.closePopUp.bind(this)
+    this.closeEdit = this.closeEdit.bind(this)
     this.tarefas = []
     this.tarefa = []
     this.tarefaExclude = []
@@ -42,6 +43,11 @@ export default class App extends Component {
   edit(){
     this.setState({formButton: 'Editar'})
     this.setState({formTitle: 'Editar a tarefa'}) 
+  }
+
+  closeEdit(){
+    this.setState({formButton: 'Inserir'})
+    this.setState({formTitle: 'Cadastrar nova tarefa'})
   }
   
   atribuiValor(data,array){ 
@@ -110,7 +116,7 @@ export default class App extends Component {
         </View>
       )}
         
-        <Form titulo={this.state.formTitle} button={this.state.formButton} tarefa={this.state.tarefa} select={this.selectTarefa}/>                 
+        <Form titulo={this.state.formTitle} button={this.state.formButton} tarefa={this.state.tarefa} select={this.selectTarefa} close={this.closeEdit}/>                 
       </View>
     );
   }

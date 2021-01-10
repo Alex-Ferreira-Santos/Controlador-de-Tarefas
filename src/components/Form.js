@@ -127,6 +127,7 @@ class Form extends Component{
                             this.setState({hideInsert: ''})
                             this.setState({edit: false})
                             this.props.tarefa[0] = undefined
+                            this.props.close()
                         }}>
                             <Text>Voltar</Text>
                         </TouchableOpacity>
