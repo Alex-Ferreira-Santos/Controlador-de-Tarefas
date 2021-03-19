@@ -158,5 +158,3 @@ class Form extends Component{
 export default Form
 
 
-// MUDAR O TEXTO DE INSERT PARA EDITAR
-// FAZER CHECK DE HORA
